@@ -1,26 +1,163 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/*
+ * Design tokens taken from the Figma variables (file JuWeHeNrkFCbfEwoz3hpDf).
+ * Figma name → token:
+ *   primary-blue            → brand           #3157f6
+ *   primary-blue-light      → brand-soft      #e2e8ff
+ *   primary-orange          → coral           #ff704d
+ *   secondary-yellow        → sun             #ffee7e
+ *   backgrounnd-light-yellow→ cream           #f9f8f3
+ *   backgrounnd-yellow      → butter          #fff1c2
+ *   background-orange       → peach           #ffcb9f
+ *   background-darkblue     → navy            #171b2c
+ *   text-primary            → ink             #171b2c
+ *   text-secondary          → ink-muted       #656770
+ *   text-tertiary           → ink-subtle      #6d7384
+ *   text-white-secondary    → on-dark         #e7e7ec
+ *   text-white-tertiary     → on-dark-muted   #9e9faa
+ *   line-1                  → line            #dbdfeb
+ *   (raw #e9d659 in "How it works")→ mustard
+ */
+@theme {
+  --color-brand: #3157f6;
+  --color-brand-hover: #2346dc;
+  --color-brand-soft: #e2e8ff;
+  --color-coral: #ff704d;
+  --color-sun: #ffee7e;
+  --color-sun-hover: #ffe54d;
+  --color-cream: #f9f8f3;
+  --color-butter: #fff1c2;
+  --color-peach: #ffcb9f;
+  --color-navy: #171b2c;
+  --color-ink: #171b2c;
+  --color-ink-muted: #656770;
+  --color-ink-subtle: #6d7384;
+  --color-on-dark: #e7e7ec;
+  --color-on-dark-muted: #9e9faa;
+  --color-line: #dbdfeb;
+  --color-mustard: #e9d659;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Typography — "Desktop/*" and "Mobile/*" text styles from Figma (-m = mobile). */
+  --text-h1: 4rem;
+  --text-h1--line-height: 70px;
+  --text-h1--letter-spacing: -1.6px;
+  --text-h1-m: 2.5rem;
+  --text-h1-m--line-height: 44px;
+  --text-h1-m--letter-spacing: -1px;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --text-h2: 3.5rem;
+  --text-h2--line-height: 64px;
+  --text-h2--letter-spacing: -1.4px;
+  --text-h2-m: 2.25rem;
+  --text-h2-m--line-height: 40px;
+  --text-h2-m--letter-spacing: -0.9px;
+
+  --text-h3: 3rem;
+  --text-h3--line-height: 56px;
+  --text-h3--letter-spacing: -1.2px;
+  --text-h3-m: 2rem;
+  --text-h3-m--line-height: 36px;
+  --text-h3-m--letter-spacing: -0.8px;
+
+  --text-quote: 1.875rem;
+  --text-quote--line-height: 44px;
+  --text-quote--letter-spacing: -0.75px;
+  --text-quote-m: 1.25rem;
+  --text-quote-m--line-height: 32px;
+
+  --text-h5: 1.25rem;
+  --text-h5--line-height: 32px;
+  --text-h5-m: 1.25rem;
+  --text-h5-m--line-height: 28px;
+
+  --text-subtitle-1: 1.125rem;
+  --text-subtitle-1--line-height: 28px;
+  --text-subtitle-1-m: 1rem;
+  --text-subtitle-1-m--line-height: 26px;
+
+  --text-subtitle-2: 1rem;
+  --text-subtitle-2--line-height: 28px;
+  --text-subtitle-2-m: 0.875rem;
+  --text-subtitle-2-m--line-height: 24px;
+
+  --text-body: 0.875rem;
+  --text-body--line-height: 24px;
+
+  --text-overline: 0.75rem;
+  --text-overline--line-height: 16px;
+  --text-overline--letter-spacing: 1.44px;
+
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 19.5px;
+
+  --shadow-float: 0 4px 12px rgb(0 0 0 / 0.1);
+  --shadow-card: 0 12px 16px rgb(23 27 44 / 0.04);
+  --shadow-photo: 0 3.21px 4.815px rgb(0 0 0 / 0.1), 0 0 3.21px rgb(0 0 0 / 0.07);
+
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Fonts are loaded with next/font in layout.tsx and exposed as CSS variables. */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+    overflow-x: clip;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/*
+ * Scroll-reveal: pure CSS (scroll-driven animations). Content is always visible
+ * when JS is off, when the browser lacks support, or when the user prefers
+ * reduced motion.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: fade-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
 }
