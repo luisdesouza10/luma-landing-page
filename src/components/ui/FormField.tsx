@@ -25,7 +25,6 @@ const control =
   "outline-none transition-[border-color,box-shadow] duration-200 " +
   "focus:border-brand focus:ring-3 focus:ring-brand/20";
 
-/** Label + input/textarea + inline error message, wired up with aria-invalid/aria-describedby. */
 export function FormField({ id, label, error, className, ...props }: FormFieldProps) {
   const errorId = `${id}-error`;
   const shared = {

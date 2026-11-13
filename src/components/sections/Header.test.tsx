@@ -63,16 +63,13 @@ describe("Header mobile menu", () => {
     const items = within(dialog).getAllByRole("link");
     const last = items[items.length - 1];
 
-    // Tab past the last item wraps to the close button…
     last.focus();
     await user.tab();
     expect(toggle).toHaveFocus();
 
-    // …and Shift+Tab from the close button wraps back to the last item.
     await user.tab({ shift: true });
     expect(last).toHaveFocus();
 
-    // Never escapes to the page behind.
     for (let i = 0; i < items.length + 2; i++) {
       await user.tab();
       expect(screen.getByRole("link", { name: "Page link", hidden: true })).not.toHaveFocus();

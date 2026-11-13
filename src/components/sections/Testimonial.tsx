@@ -20,7 +20,7 @@ export function Testimonial({ content }: TestimonialProps) {
               <Image src={author.avatar.src} alt="" fill sizes="48px" className="object-cover" />
             </span>
             <span className="flex flex-col">
-              <span className="text-subtitle-1-m font-bold text-ink md:text-[16px] md:leading-7">{author.name}</span>
+              <span className="text-subtitle-1-m font-bold text-ink md:text-subtitle-2">{author.name}</span>
               <span className="text-body text-ink-muted">{author.role}</span>
             </span>
           </figcaption>

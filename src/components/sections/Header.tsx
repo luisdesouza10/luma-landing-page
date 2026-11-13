@@ -14,7 +14,6 @@ type HeaderProps = {
 };
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-/** Elements made inert while the mobile menu is open. */
 const BACKGROUND_SELECTORS = ["#main", "#site-footer"];
 
 export function Header({ brandName, nav, actions }: HeaderProps) {
@@ -31,7 +30,6 @@ export function Header({ brandName, nav, actions }: HeaderProps) {
   useEffect(() => {
     if (!open) return;
 
-    // Lock page scroll and hide the rest of the page from assistive tech / tab order.
     const { body } = document;
     const previousOverflow = body.style.overflow;
     body.style.overflow = "hidden";
@@ -40,7 +38,6 @@ export function Header({ brandName, nav, actions }: HeaderProps) {
     );
     background.forEach((el) => el.setAttribute("inert", ""));
 
-    // Move focus into the menu.
     panelRef.current?.querySelector<HTMLElement>(FOCUSABLE)?.focus();
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -51,7 +48,6 @@ export function Header({ brandName, nav, actions }: HeaderProps) {
       }
       if (event.key !== "Tab") return;
 
-      // Focus trap: the toggle (now "Close menu") plus everything inside the panel.
       const items = [
         toggleRef.current,
         ...Array.from(panelRef.current?.querySelectorAll<HTMLElement>(FOCUSABLE) ?? []),

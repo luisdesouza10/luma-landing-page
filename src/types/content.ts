@@ -31,19 +31,15 @@ export type Stat = {
   label: string;
 };
 
-/** One photo in the "Meet students & teachers" collage, sized per breakpoint. */
 export type CollagePhoto = {
   src: string;
   alt: string;
-  /** Desktop size in px (Figma frame 2:7). */
   desktop: { w: number; h: number };
-  /** Mobile size in px (Figma frame 2:4195). */
   mobile: { w: number; h: number };
 };
 
 export type CollageColumn = {
   photos: CollagePhoto[];
-  /** Top offset in px (desktop, mobile). */
   offset?: { desktop: number; mobile: number };
   align?: "start" | "end" | "center";
 };

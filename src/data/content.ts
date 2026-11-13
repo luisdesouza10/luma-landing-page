@@ -1,10 +1,5 @@
 import type { SiteContent } from "@/types/content";
 
-/**
- * Mock content for the landing page. All copy comes from the Figma file; the
- * few deliberate deviations are documented in the README ("Design notes").
- */
-
 const avatar = (n: 1 | 2 | 3 | 4, alt: string) => ({
   src: `/images/avatar-${n}.jpg`,
   alt,

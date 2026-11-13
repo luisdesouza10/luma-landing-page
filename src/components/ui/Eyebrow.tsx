@@ -13,7 +13,6 @@ const tones = {
   muted: "text-ink-subtle",
 } as const;
 
-/** Small uppercase label ("Overline" text style in Figma). */
 export function Eyebrow({ children, tone = "brand", className }: EyebrowProps) {
   return (
     <p className={cn("text-overline font-semibold uppercase", tones[tone], className)}>{children}</p>

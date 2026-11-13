@@ -4,14 +4,11 @@ import { cn } from "@/lib/cn";
 
 type AvatarStackProps = {
   avatars: ImageAsset[];
-  /** Avatar diameter in px (32 in the hero, 40 in the final CTA). */
   size: number;
-  /** Ring colour that separates overlapping avatars. */
   ringClassName: string;
   className?: string;
 };
 
-/** Overlapping round avatars; each one overlaps the previous by 8px, as in Figma. */
 export function AvatarStack({ avatars, size, ringClassName, className }: AvatarStackProps) {
   return (
     <ul className={cn("flex", className)} aria-hidden="true">

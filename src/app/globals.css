@@ -1,24 +1,5 @@
 @import "tailwindcss";
 
-/*
- * Design tokens taken from the Figma variables (file JuWeHeNrkFCbfEwoz3hpDf).
- * Figma name → token:
- *   primary-blue            → brand           #3157f6
- *   primary-blue-light      → brand-soft      #e2e8ff
- *   primary-orange          → coral           #ff704d
- *   secondary-yellow        → sun             #ffee7e
- *   backgrounnd-light-yellow→ cream           #f9f8f3
- *   backgrounnd-yellow      → butter          #fff1c2
- *   background-orange       → peach           #ffcb9f
- *   background-darkblue     → navy            #171b2c
- *   text-primary            → ink             #171b2c
- *   text-secondary          → ink-muted       #656770
- *   text-tertiary           → ink-subtle      #6d7384 (→ #6b7182, AA contrast)
- *   text-white-secondary    → on-dark         #e7e7ec (→ #ebebf0, AA contrast)
- *   text-white-tertiary     → on-dark-muted   #9e9faa
- *   line-1                  → line            #dbdfeb
- *   (raw #e9d659 in "How it works")→ mustard
- */
 @theme {
   --color-brand: #3157f6;
   --color-brand-hover: #2346dc;
@@ -38,7 +19,6 @@
   --color-line: #dbdfeb;
   --color-mustard: #e9d659;
 
-  /* Typography — "Desktop/*" and "Mobile/*" text styles from Figma (-m = mobile). */
   --text-h1: 4rem;
   --text-h1--line-height: 70px;
   --text-h1--letter-spacing: -1.6px;
@@ -109,7 +89,6 @@
   }
 }
 
-/* Fonts are loaded with next/font in layout.tsx and exposed as CSS variables. */
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
@@ -148,11 +127,9 @@
 }
 
 /*
- * Scroll-reveal: pure CSS (scroll-driven animations). Content is always visible
- * when JS is off, when the browser lacks support, or when the user prefers
- * reduced motion.
+ * Scroll-reveal via CSS scroll-driven animations: content stays visible without support
+ * or with reduced motion. Animates transform only, so text never renders at reduced contrast.
  */
-/* Only moves content (no opacity), so text never renders at reduced contrast mid-animation. */
 @keyframes rise {
   from {
     transform: translateY(24px);

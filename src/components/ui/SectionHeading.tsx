@@ -6,11 +6,9 @@ type SectionHeadingProps = {
   eyebrow: string;
   title: ReactNode;
   description?: ReactNode;
-  /** id for the heading, so the section can use aria-labelledby. */
   id?: string;
   align?: "left" | "center";
   tone?: "default" | "inverse";
-  /** Space between eyebrow and title: 8px ("Meet") or 16px (everywhere else). */
   eyebrowGap?: "sm" | "md";
   className?: string;
   descriptionClassName?: string;

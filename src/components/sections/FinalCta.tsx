@@ -36,7 +36,6 @@ const icons = [
 export function FinalCta({ content }: FinalCtaProps) {
   return (
     <section aria-labelledby="final-cta-title" className="relative overflow-hidden bg-butter py-15 lg:py-25">
-      {/* A centred 1280px "frame" (or the full viewport when narrower) that holds the shapes. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 left-1/2 hidden w-full max-w-[1280px] -translate-x-1/2 lg:block"

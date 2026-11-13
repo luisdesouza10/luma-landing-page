@@ -7,11 +7,6 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 
 type HeroProps = { content: SiteContent["hero"] };
 
-/*
- * Media block geometry comes straight from Figma:
- *  - mobile (base): 380px tall, photo inset 8px, peach bar from 27.8% to 10px past the right edge;
- *  - desktop (lg): 500×520 box, peach bar at left 90% / 17.8% wide, circle at (-44.8px, 77.5%).
- */
 export function Hero({ content }: HeroProps) {
   const { trust, coursesBadge, ratingBadge } = content;
 

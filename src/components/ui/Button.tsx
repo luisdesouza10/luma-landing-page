@@ -7,7 +7,6 @@ export type ButtonSize = "sm" | "md";
 type StyleProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  /** Stretch to the parent's width (used on mobile). */
   fullWidth?: boolean;
 };
 

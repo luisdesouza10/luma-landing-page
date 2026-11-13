@@ -1,7 +1,6 @@
 import type { Step } from "@/types/content";
 import { cn } from "@/lib/cn";
 
-/** The three abstract step illustrations are plain shapes in Figma, so they are drawn with CSS. */
 function StepIcon({ icon }: { icon: Step["icon"] }) {
   if (icon === "focus") {
     return (
@@ -13,7 +12,6 @@ function StepIcon({ icon }: { icon: Step["icon"] }) {
   if (icon === "experience") {
     return (
       <div className="relative size-14">
-        {/* Mobile frame uses a translucent coral square; desktop uses peach. */}
         <div className="absolute inset-0 rotate-12 rounded-lg bg-coral/15 lg:bg-peach" />
         <div className="absolute top-6 left-6 size-7 rounded-full bg-coral" />
       </div>
@@ -27,7 +25,6 @@ function StepIcon({ icon }: { icon: Step["icon"] }) {
 }
 
 type StepItemProps = Step & {
-  /** Draws the vertical connector to the next step (mobile layout only). */
   hasNext?: boolean;
   className?: string;
 };

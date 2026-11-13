@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { siteDescription, siteName, siteTitle, siteUrl } from "@/lib/site";
 
-// Self-hosted variable fonts (Inter + Plus Jakarta Sans, SIL OFL), loaded through next/font.
 const inter = localFont({
   src: "../fonts/Inter-Variable.woff2",
   variable: "--font-inter",
@@ -17,30 +17,48 @@ const jakarta = localFont({
   display: "swap",
 });
 
-const title = "Luma — Practical courses that move you forward";
-const description =
-  "Practical courses taught by people who do the work every day. Learn design, technology, business and more — one focused lesson at a time.";
-
 export const metadata: Metadata = {
-  metadataBase: new URL("https://luma.example.com"),
-  title,
-  description,
-  applicationName: "Luma",
+  metadataBase: siteUrl,
+  title: siteTitle,
+  description: siteDescription,
+  applicationName: siteName,
   keywords: ["online courses", "product design", "technology", "business", "creative skills"],
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title,
-    description,
-    siteName: "Luma",
+    url: "/",
+    title: siteTitle,
+    description: siteDescription,
+    siteName,
     locale: "en_US",
-    images: [{ url: "/images/hero.jpg", width: 900, height: 1100, alt: "Learner studying at a laptop" }],
   },
   twitter: {
     card: "summary_large_image",
-    title,
-    description,
-    images: ["/images/hero.jpg"],
+    title: siteTitle,
+    description: siteDescription,
   },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": new URL("/#organization", siteUrl).href,
+      name: siteName,
+      url: siteUrl.href,
+      logo: new URL("/images/logo.svg", siteUrl).href,
+      description: siteDescription,
+    },
+    {
+      "@type": "WebSite",
+      "@id": new URL("/#website", siteUrl).href,
+      name: siteName,
+      url: siteUrl.href,
+      inLanguage: "en",
+      publisher: { "@id": new URL("/#organization", siteUrl).href },
+    },
+  ],
 };
 
 export const viewport: Viewport = {
@@ -52,7 +70,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${inter.variable} ${jakarta.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

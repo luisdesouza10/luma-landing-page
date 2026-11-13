@@ -10,7 +10,6 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export const MESSAGE_MIN_LENGTH = 10;
 
-/** Client-side validation for the contact form. Returns an empty object when valid. */
 export function validateContact(values: ContactValues): ContactErrors {
   const errors: ContactErrors = {};
   const name = values.name.trim();
