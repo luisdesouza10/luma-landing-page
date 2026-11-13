@@ -37,6 +37,19 @@ npm test             # Vitest, single run (npm run test:watch for watch mode)
 
 The same four steps run on every push / pull request through GitHub Actions (`.github/workflows/ci.yml`).
 
+### Status at submission
+
+All checks pass: lint ✓ · typecheck ✓ · 20/20 tests ✓ · production build ✓ (static route `/`).
+
+Lighthouse (production build, local `next start`):
+
+| Mobile | Desktop |
+| --- | --- |
+| <img src="docs/screenshots/lighthouse-mobile.png" width="380" alt="Lighthouse mobile: Performance 92, Accessibility 100, Best Practices 100, SEO 100" /> | <img src="docs/screenshots/lighthouse-desktop.png" width="380" alt="Lighthouse desktop: 100 in all four categories" /> |
+
+Mobile performance is held back by LCP (~3 s on Lighthouse's simulated slow 4G), which is the hero
+photo; CLS is 0 on both.
+
 ---
 
 ## Project structure
@@ -134,8 +147,9 @@ a short delay.
 
 **Motion.** The animations are kept light:
 - the hero content fades and rises in with a small stagger;
-- sections reveal on scroll using CSS scroll-driven animations (`animation-timeline: view()`), with
-  no JavaScript and no hidden-until-JS content;
+- sections rise slightly into place on scroll using CSS scroll-driven animations
+  (`animation-timeline: view()`), with no JavaScript and no hidden-until-JS content. The scroll
+  reveal animates only `transform`, never opacity, so text is never shown at reduced contrast;
 - cards and arrow links have hover effects.
 
 All motion is wrapped in `prefers-reduced-motion: no-preference`, and a global reduced-motion rule
@@ -176,6 +190,10 @@ Smaller inconsistencies between the two frames, and how they were resolved:
 - **Container width.** The FeaturedCourse, Testimonial and Footer containers are 1136px wide in
   Figma, but 1280 − 2 × 80 = 1120px. Everything uses the 1120px content width, and the footer's
   416/208/208/208 columns became a 2fr/1fr/1fr/1fr grid.
+- **Contrast.** Two Figma colours are 4.45:1 against their backgrounds, just under the WCAG AA
+  minimum of 4.5:1. `text-tertiary` on the cream background moved from `#6d7384` to `#6b7182`, and
+  `text-white-secondary` on the brand blue from `#e7e7ec` to `#ebebf0`. Both changes are visually
+  imperceptible.
 - **Close icon.** The open-menu (✕) icon isn't in the design. It is drawn to match the hamburger
   icon's 1.5px stroke.
 
@@ -197,12 +215,12 @@ Smaller inconsistencies between the two frames, and how they were resolved:
 
 ## Time spent
 
-About **25 minutes** of hands-on time, end to end:
+About **40 minutes** end to end:
 
 - reading the Figma file and exporting assets: ~6 min;
 - setup and tokens: ~3 min;
 - sections and components: ~9 min;
-- tests, visual QA at five widths, and README: ~7 min.
+- tests, visual QA at six widths, Lighthouse fixes and README: ~22 min.
 
 This was done with an AI agent (see below), so the figure reflects agent-assisted work, not
 hand-coding time.
