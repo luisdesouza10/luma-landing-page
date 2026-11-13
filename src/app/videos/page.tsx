@@ -26,7 +26,7 @@ const demo: Video = {
   label: "Demo",
   title: "Project walkthrough",
   description: "A tour of the landing page, its responsive layouts, the mobile menu and the contact form.",
-  src: null,
+  src: "/videos/luma-demo.mp4",
   orientation: "horizontal",
 };
 
